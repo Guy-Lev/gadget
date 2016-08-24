@@ -23,6 +23,7 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
   app.import('bower_components/fontawesome/css/font-awesome.min.css');
+  app.import("bower_components/moment/moment.js");
 
   var mergeTrees = require('broccoli-merge-trees');
   var pickFiles = require('broccoli-static-compiler');

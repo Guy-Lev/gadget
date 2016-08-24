@@ -1,0 +1,7 @@
+production: false
+transporter_host: "gadgetstaging.lab.il.infinidat.com"
+sentry_dsn: null
+vacuum_threshold: 60
+pin_remind_threshold: null
+fqdn: "http://gadgetstaging.lab.il.infinidat.com"
+hostname_redirect_aliases: ["gadgetstaging"]

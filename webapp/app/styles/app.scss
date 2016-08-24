@@ -2,3 +2,193 @@
 
 /* page layout */
 @import "layout";
+
+@mixin ellipsis-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.center {
+    display:inline-block;
+    vertical-align: middle!important;
+}
+
+
+.margined-page-header{
+    @extend .page-header;
+    margin:3em;
+}
+
+.wide-container{
+    @extend .container-fluid;
+    padding: 1em;
+    margin: 1em;
+    background-color: white !important;
+}
+
+.main-wide-container{
+    padding-top: 0em;
+    margin-top: 0em;
+    @extend .wide-container;
+    min-height: 700px;
+}
+
+.import-log-table{
+}
+
+.import-log-table, td{
+    padding: 0.2em;
+    width: 80%;
+}
+
+.user-info {
+    color: $gray-light;
+    font-size:small;
+}
+.navbar-gravatar {
+    height: 20px;
+
+    &.large {
+	height: 60px;
+    }
+
+}
+
+.left_col {
+    padding-top: 1em;
+    padding-right: 1em;
+    float: left;
+    width: 50%;
+    text-align: left;
+    color: #000;
+}
+
+.right_col {
+    padding-top: 1em;
+    padding-left: 1em;
+    float: right;
+    width: 50%;
+    text-align: left;
+    color: #000;
+}
+
+
+.item {
+
+    display: flex;
+    border: 1px solid $gray-lighter;
+    margin: 2px;
+    overflow: hidden;
+
+
+
+    .investigation-details {
+	padding: 1em;
+	display: flex;
+	overflow: hidden;
+	flex: 1;
+
+	.investigation-name {
+	    flex: 1;
+	    @include ellipsis-overflow;
+	}
+
+	.user-info {
+	    color: $gray-light;
+	    flex: 0 0 15%;
+	    width: 300px;
+	    @include ellipsis-overflow;
+	}
+	.subject-info {
+	    flex: 0 0 30%;
+
+	    .subject-version {
+		background: $gray-lighter;
+		border-radius: 3px;
+		font-size: x-small;
+		margin: 1px;
+		padding: 2px;
+	    }
+	}
+    }
+}
+
+
+
+
+//----------------TimeLine-------------------
+.event-item {
+    margin-bottom: 20px;
+    margin-left: 40px;
+    position: relative;
+}
+.event-item .event-inner {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 5px;
+    position: relative;
+}
+.event-item .event-inner:before {
+    border-right: 10px solid #ddd;
+    border-style: solid;
+    border-width: 10px;
+    color: rgba(0,0,0,0);
+    content: "";
+    display: block;
+    height: 0;
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    width: 0;
+}
+.event-item .event-inner:after {
+    border-right: 10px solid #fff;
+    border-style: solid;
+    border-width: 10px;
+    color: rgba(0,0,0,0);
+    content: "";
+    display: block;
+    height: 0;
+    position: absolute;
+    left: -18px;
+    top: 6px;
+    width: 0;
+}
+.event-item:before {
+    background: #fff;
+    border-radius: 2px;
+    bottom: -30px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2);
+    content: "";
+    height: 100%;
+    left: -30px;
+    position: absolute;
+    width: 3px;
+}
+.event-item:after {
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    content: "";
+    height: 15px;
+    left: -36px;
+    position: absolute;
+    top: 10px;
+    width: 15px;
+}
+
+.event-item .event-head {
+    padding: 6px;
+}
+.event-item .event-head .event-detail {
+    overflow: hidden;
+    font-size: 12px;
+}
+.event-item .event-head .event-detail h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}

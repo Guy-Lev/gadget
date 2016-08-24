@@ -1,0 +1,8 @@
+<div class="main-wide-container">
+  <div class="page-header">
+    <h2>Investigations</h2>
+  </div>
+  {{#each sortedInvestigations as |investigation|}}
+    {{investigation-row investigation=investigation}}
+  {{/each}}
+</div>

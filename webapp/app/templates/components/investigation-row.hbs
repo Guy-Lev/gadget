@@ -1,0 +1,10 @@
+<div class="item">
+  <div class="investigation-details">
+    {{#link-to "investigation" investigation.id (query-params investigation_id=investigation.id search="")}}
+      <div class="user-info">  {{investigation.name}}</div>
+    {{/link-to}}
+      <div class="user-info"> {{avatar-image email=investigation.created_by.email}} Created by {{investigation.created_by.name}}</div>
+      <div class="user-info"> {{investigation.formated_date}}</div>
+      <button class="btn btn-default fa fa-trash" {{action "delete"}} type="button"></button>
+  </div>
+</div>

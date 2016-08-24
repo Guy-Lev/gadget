@@ -1,4 +1,5 @@
 [webapp]
-
+gadget-staging.lab.il.infinidat.com ansible_ssh_user=root
 
 [db]
+gadget-staging.lab.il.infinidat.com ansible_ssh_user=root

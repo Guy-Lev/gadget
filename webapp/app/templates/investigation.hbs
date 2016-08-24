@@ -1,0 +1,22 @@
+<div  class="main-wide-container" style="border-bottom:1px solid #eeeeee">
+  <div style="border-bottom:1px solid #eeeeee">
+    <h2>{{investigation.name}}</h2>
+    <p class="user-info">Created at {{investigation.formated_date}}</p>
+    <p class="user-info">By {{investigation.created_by.name}} {{avatar-image email=investigation.created_by.email}}</p>
+  </div>
+  {{#if investigation.error}}
+    <h4 align="center">Sorry, Something went wrong:</h4>
+    <p align="center">error: {{investigation.error}}</p>
+  {{else}}
+    {{#if investigation.ready}}
+      <div style="width: 100%;">
+	<div id ="timeline-sec" class="left_col" style="border-right:2px solid #e2e2e2; ">{{timeline-section investigation=investigation}}</div>
+	<div class="right_col">{{filtering-section refresh_model=(action 'refresh_model') investigation=investigation events=events search=search}}</div>
+      </div>
+      <div style="clear:both"></div>
+    {{else}}
+      <h4 align="center">Please wait while we create the investigation</h4>
+
+    {{/if}}
+  {{/if}}
+</div>

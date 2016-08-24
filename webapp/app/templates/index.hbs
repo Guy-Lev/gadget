@@ -1,0 +1,23 @@
+<div class="margined-page-header">
+  <h2>Create Investigation:</h2>
+</div>
+
+<div class="main-wide-container">
+  {{#if session.isAuthenticated}}
+    <div class="form-group row">
+      <label for="investigtionNameInput" class="col-xs-1 col-form-label">Name</label>
+      <div class="col-xs-6">
+	{{input class="form-control" id="investigtionNameInput"  type="text" value=name }}
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="logUrl" class="col-xs-1 col-form-label">Log url</label>
+      <div class="col-xs-6">
+	{{input class="form-control" id="logUrl"  type="text" value=log_url }}
+      </div>
+    </div>
+    <button class="btn" {{action "create"}}>Create</button>
+  {{else}}
+    <h4> Please log in to create a new Investigation.</h4>
+  {{/if}}
+</div>

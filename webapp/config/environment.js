@@ -3,6 +3,16 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'webapp',
+    torii: {
+      providers: {
+        'google-oauth2': {
+          apiKey: '1013728488597-ilbto7lt5gl4vmt1lka5sm4uhkrd6a5v.apps.googleusercontent.com',
+          scope: 'email profile'
+        },
+        sessionServiceName: 'session'
+      },
+    },
+
     environment: environment,
     rootURL: '/',
     locationType: 'hash',
@@ -14,6 +24,9 @@ module.exports = function(environment) {
     },
 
     APP: {
+      avatars: {
+            fallback_image_url: "/static/avatars/__EMAIL__",
+        },
       // Here you can pass flags/options to your application instance
       // when it is created
     }

@@ -11,31 +11,44 @@
       </li>
       <li>
 	<a href="#">New...</a>
+	<a href="#/investigations">Investigations</a>
+      </li>
+
+      <li class="text-center">
+	{{#if session.isAuthenticated}}
+	  {{# with session.data.authenticated.user_info as |u|}}
+	    <div class="Aligner-item">{{avatar-image email=u.email large=true}}</div>
+	    <div class="Aligner-item"><a>Logged in as {{u.name}}</a></div>
+	    <div class="Aligner-item"><button class="btn" {{action "logout"}} type="submit"><span class="glyphicon glyphicon-off" /> Log out</button></div>
+	  {{/with}}
+	{{else}}
+	  <button class="btn" {{action "login"}}>Login</button>
+	{{/if}}
       </li>
     </ul>
   </div>
   <!-- /#sidebar-wrapper -->
 
   <!-- Page Content -->
+  {{ember-cli-spinner id="gadget-spinner" type="wave" height="80px" width="80px" bgColor="transparent" color="blue"}}
   <div id="page-content-wrapper">
     <div class="container-fluid">
       <div class="row">
 	<div class="col-lg-12">
-	  {{outlet}}
+	  {{liquid-outlet}}
 	</div>
       </div>
     </div>
   </div>
   <!-- /#page-content-wrapper -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p class="text-muted">
+	<a href="http://getweber.github.io/" target="_blank">
+	  <img src="http://getweber.github.io/img/hatched-from-weber-badge.svg" style="height: 2em">
+	</a>
+      </p>
+    </div>
+  </footer>
 
 </div>
-
-<footer class="footer">
-  <div class="container text-center">
-    <p class="text-muted">
-      <a href="http://getweber.github.io/" target="_blank">
-      <img src="http://getweber.github.io/img/hatched-from-weber-badge.svg" style="height: 2em">
-      </a>
-    </p>
-  </div>
-</footer>

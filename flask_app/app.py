@@ -50,18 +50,21 @@ def create_app(config=None):
     models.db.init_app(app)
 
     from . import auth
+    from .blueprints import investigations, entities, events, roles, users, event_types
     Security(app, auth.user_datastore, register_blueprint=False)
-
     from .auth import auth
     from .views import views
     from .setup import setup
-    blueprints = [auth, views, setup]
-
+    app.register_blueprint(auth)
+    app.register_blueprint(views)
+    app.register_blueprint(setup)
+    app.register_blueprint(investigations, url_prefix="/investigations")
+    app.register_blueprint(entities, url_prefix="/entities")
+    app.register_blueprint(events, url_prefix="/events")
+    app.register_blueprint(roles, url_prefix="/roles")
+    app.register_blueprint(users, url_prefix="/users")
+    app.register_blueprint(event_types, url_prefix="/event-types")
     from .errors import errors
-
-    for blueprint in blueprints:
-        app.register_blueprint(blueprint)
-
     for code in errors:
         app.errorhandler(code)(errors[code])
 
