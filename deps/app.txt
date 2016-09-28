@@ -17,3 +17,4 @@ watchdog
 pudb
 flux
 gadget-python
+jsonschema

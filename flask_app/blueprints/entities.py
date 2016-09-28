@@ -1,5 +1,6 @@
 import http
 from flask import Blueprint, jsonify, request
+from .utils import validate_schema
 from ..models import Entity, db
 entities = Blueprint("entitiess", __name__, template_folder="templates")
 
@@ -18,7 +19,23 @@ def get(entity_id):
     return jsonify({'data':entity.to_dict()})
 
 
+
 @entities.route('/<int:entity_id>', methods=['PATCH'])
+@validate_schema({
+    'type': 'object',
+    "properties": {
+        "data":{
+        'type': 'object',
+            "properties": {
+                "attributes": {
+                "is-selected": {'type': 'bool'},
+                }
+            }
+        },
+        "required": ["is_selected"]
+    },
+    "required": ["data"]
+})
 def update(entity_id):
     entity = db.session.query(Entity).filter_by(id=entity_id).first()
     if not entity:

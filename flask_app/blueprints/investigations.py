@@ -1,5 +1,6 @@
 import http
 import flux
+from .utils import validate_schema
 from flask import Blueprint, jsonify, request, abort
 from ..models import Investigation, Event, EventType, Entity, db
 from ..tasks import process_log
@@ -49,6 +50,22 @@ def get_by_id(investigation_id):
 
 
 @investigations.route('', methods=['POST'])
+@validate_schema({
+    'type': 'object',
+    "properties": {
+        "data":{
+        'type': 'object',
+            "properties": {
+                "attributes": {
+                "log_url": {'type': 'string'},
+                "name": {'type': 'string'},
+                }
+            }
+        },
+        "required": ["log_url", "name"]
+    },
+    "required": ["data"]
+})
 def create():
     investigation_json = request.json['data']['attributes']
     investigation = Investigation(
