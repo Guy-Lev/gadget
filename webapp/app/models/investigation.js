@@ -8,6 +8,7 @@ export default DS.Model.extend({
   log_url: DS.attr(),
   ready: DS.attr(),
   error: DS.attr(),
+  warning: DS.attr(),
   entities: DS.hasMany('entity'),
   events: DS.hasMany('event'),
   event_types: DS.hasMany('event_type'),

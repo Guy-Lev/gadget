@@ -10,6 +10,8 @@
       {{else}}
 	{{#if event.is_operation}}
 	  {{operation-card event=event}}
+	{{else}}
+	  {{creation-card event=event}}
 	{{/if}}
       {{/if}}
     {{/if}}

@@ -22,6 +22,7 @@ from .models import Investigation, Event, Entity, EventType, db
 logger = logbook.Logger(__name__)
 
 TYPE_CODES = munch.Munch(
+    CREATE='CR',
     OPERATION='OP',
     STATE='ST',
     UPDATE='UP',
@@ -82,6 +83,8 @@ def process_log(log_url, investigation_id):
                 _handle_update_event(log_line, investigation)
             elif log_line.type == TYPE_CODES.ERROR:
                 _handle_error_event(log_line, investigation)
+            elif log_line.type == TYPE_CODES.CREATE:
+                _handle_creation_event(log_line, investigation)
     except Exception as e:
         investigation.error = str(e)
 
@@ -132,7 +135,6 @@ def _handle_state_event(log_line, investigation):
     event.entities = [entity]
     db.session.add(event)
 
-
 def _handle_update_event(log_line, investigation):
     entity = db.session.query(Entity).join(Entity.events).filter(and_(Entity.str_id==log_line.entity, Event.investigation_id==investigation.id)).first()
     if not entity:
@@ -154,6 +156,24 @@ def _handle_error_event(log_line, investigation):
     event.params = log_line.params
     db.session.add(event)
 
+def _handle_creation_event(log_line, investigation):
+    entity = db.session.query(Entity).join(Entity.events).filter(and_(Entity.str_id==log_line.entity, Event.investigation_id==investigation.id)).first()
+    if entity:
+        warn_msg = "Creation of the entity \"" + log_line.entity + "\" happened more than once."
+        if not investigation.warning:
+            investigation.warning = warn_msg
+        elif warn_msg not in investigation.warning:
+            investigation.warning = investigation.warning.join(warn_msg)
+    else:
+        entity = Entity()
+        entity.str_id = log_line.entity
+        db.session.add(entity)
+
+    event = _create_basic_event(log_line, investigation)
+    event.event_type = _get_or_create_event_type("creation", investigation)
+    event.entities = [entity]
+    event.investigation_id = investigation.id
+    db.session.add(event)
 
 after_setup_logger.connect(setup_log)
 after_setup_task_logger.connect(setup_log)

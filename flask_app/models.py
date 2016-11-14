@@ -50,6 +50,7 @@ class Investigation(db.Model, UserMixin):
     log_url = db.Column(db.String(511))
     ready = db.Column(db.Boolean, default=False)
     error = db.Column(db.String)
+    warning = db.Column(db.String)
     events = db.relationship("Event", backref="investigation")
     event_types = db.relationship("EventType", backref="investigation")
 

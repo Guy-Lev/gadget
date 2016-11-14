@@ -3,6 +3,7 @@
     <h2>{{investigation.name}}</h2>
     <p class="user-info">Created at {{investigation.formated_date}}</p>
     <p class="user-info">By {{investigation.created_by.name}} {{avatar-image email=investigation.created_by.email}}</p>
+    <a href="{{investigation.log_url}}" class="add-margin-left" target="_blank" rel=noopener><img src="/static/assets/img/scotty-logo.png" class="text-height"/> Scotty Log</a>
   </div>
   {{#if investigation.error}}
     <h4 align="center">Sorry, Something went wrong:</h4>
