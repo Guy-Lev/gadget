@@ -18,7 +18,15 @@
 	<tbody>
 	  <tr>
 	    <td style="width:20%"><strong>On</strong></td>
-	    <td><pre class="vw-50">{{event.params.on}}</pre></td>
+	    <td>
+	      {{#multiselect-checkboxes  onchange=(action 'on_check_entity') options=operation_entities selection=selected_entities updateSelectionValue=false as |entity isSelected|}}<li>
+		<label>
+		  {{input type="checkbox" checked=isSelected}}
+		  {{entity.str_id}}
+		</label>
+	      </li>
+	      {{/multiselect-checkboxes}}
+	    </td>
 	  </tr>
 	  <tr>
 	    <td><strong>Name</strong></td>

@@ -9,7 +9,7 @@
 	{{error-card event=event}}
       {{else}}
 	{{#if event.is_operation}}
-	  {{operation-card event=event}}
+	  {{operation-card event=event investigation=investigation}}
 	{{else}}
 	  {{creation-card event=event}}
 	{{/if}}

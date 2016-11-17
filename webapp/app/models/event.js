@@ -27,6 +27,6 @@ export default DS.Model.extend({
   formated_time_stamp:function(){
     var created_moment = moment(this.get("time_stamp"));
     return created_moment.format('DD/MM/YY HH:mm:ss:SSS');
-    }.property('time_stamp'),
+  }.property('time_stamp'),
 
 });

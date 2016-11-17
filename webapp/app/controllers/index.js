@@ -17,7 +17,6 @@ export default Ember.Controller.extend({
       let self = this;
       record.save().then(function(record) {
 	self.transitionToRoute("investigation", record.get('id'));
-	console.log("investigation id is " + record.get('id'));
       });
 
     }

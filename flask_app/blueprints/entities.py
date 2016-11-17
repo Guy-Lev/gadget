@@ -2,7 +2,7 @@ import http
 from flask import Blueprint, jsonify, request
 from .utils import validate_schema
 from ..models import Entity, db
-entities = Blueprint("entitiess", __name__, template_folder="templates")
+entities = Blueprint("entities", __name__, template_folder="templates")
 
 @entities.route('', methods=['GET'])
 def get_all():
