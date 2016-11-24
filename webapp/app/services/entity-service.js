@@ -1,23 +1,25 @@
 import Ember from 'ember';
+//import MultiDict from 'multi-key-dict';
 
 export default Ember.Service.extend({
-
   store: Ember.inject.service('store'),
   init() {
+    //this.set('_cache', new MultiDict());
     this.set('_cache', Ember.Object.create());
   },
 
-  get_entity:function(entity_str) {
+  get_entity:function(entity_str, investigation) {
     let self = this;
-    let returned = this._cache.get(entity_str);
+    let CacheKey = entity_str + '@' + investigation.get('id').toString();
+    let returned = this._cache.get(CacheKey);
     if (returned  === undefined) {
       self = this;
-      return this.get('store').findAll('entity', {str_id: entity_str}).then(function(entities){
+      return this.get('store').findAll('entity', {investigation: investigation}).then(function(entities){
 	for (var i = 0; i < entities.get('length'); i++) {
 	  let entity = entities.toArray()[i];
-	  self._cache.set(entity.get('str_id'), entity);
+	  self._cache.set(entity.get('str_id') + '@'+ investigation.get('id').toString(), entity);
 	}
-	return self._cache.get(entity_str);
+	return self._cache.get(CacheKey);
       });
     }
 
