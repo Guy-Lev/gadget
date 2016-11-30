@@ -1,0 +1,8 @@
+<div class="entity-row" {{action "toggle_selected"}}>
+  {{#if entity.is_selected}}
+    <span class="fa fa-check-circle" style="color:{{entity.color}}"></span>
+  {{else}}
+    <span class="fa fa-circle-o" style="color:#ccc"></span>
+  {{/if}}
+  {{entity.str_id}}
+</div>

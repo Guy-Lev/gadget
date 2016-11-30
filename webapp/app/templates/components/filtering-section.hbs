@@ -1,21 +1,17 @@
 <div class="left_col">
   <h4>Entities:</h4>
-  <div class="input-group" style="padding-left:1.5em; padding-right:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
+  <div class="input-group" style="padding-right:1.5em; padding-top:0.5em; padding-bottom:0.5em;">
     {{input action="on_press_search" value=entered_search type="text" class="form-control" placeholder="Filter entities..."}}
     <span class="input-group-btn">
       <button class="btn btn-default fa fa-search" {{action 'on_press_search'}} type="button"></button>
     </span>
   </div><!-- /input-group -->
-
-  {{#multiselect-checkboxes onchange=(action 'on_check_entity') options=sorted_entities selection=investigation.selected_entities updateSelectionValue=false as |entity isSelected|}}<li>
-      <label>
-	{{input type="checkbox" checked=isSelected}}
-	{{entity.str_id}}
-      </label>
-    </li>
-  {{/multiselect-checkboxes}}
+  <div>
+    {{#each sorted_entities as |entity|}}
+      {{entity-row entity=entity investigation=investigation search=search}}
+    {{/each}}
+  </div>
 </div>
-
 <div class="right_col">
   <h4>Event Types:</h4>
   <br>

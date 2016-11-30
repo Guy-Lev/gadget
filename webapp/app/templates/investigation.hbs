@@ -11,7 +11,7 @@
   {{else}}
     {{#if investigation.ready}}
       <div style="width: 100%;">
-	<div id ="timeline-sec" class="left_col" style="border-right:2px solid #e2e2e2; ">{{timeline-section investigation=investigation}}</div>
+	<div id ="timeline-sec" class="left_col" style="border-right:2px solid #e2e2e2; ">{{timeline-section investigation=investigation search=search}}</div>
 	<div class="right_col">{{filtering-section refresh_model=(action 'refresh_model') investigation=investigation events=events search=search}}</div>
       </div>
       <div style="clear:both"></div>

@@ -3,13 +3,13 @@
 <div class="timeline">
   {{#each sorted_filtered_events key=id as |event|}}
     {{#if event.is_update}}
-      {{update-card event=event}}
+      {{update-card event=event investigation=investigation search=search}}
     {{else}}
       {{#if event.is_error}}
 	{{error-card event=event}}
       {{else}}
 	{{#if event.is_operation}}
-	  {{operation-card event=event investigation=investigation}}
+	  {{operation-card event=event investigation=investigation search=search}}
 	{{else}}
 	  {{creation-card event=event}}
 	{{/if}}

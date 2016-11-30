@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     search: "search",
   },
   search: null,
-actions: {
+  actions: {
     refresh_model: function(){
       this.send("refresh");
     },
