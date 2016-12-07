@@ -1,12 +1,14 @@
 import DS from 'ember-data';
-import gen from "npm:color-generator";
+import color from "npm:color";
+import { colorFromString } from 'webapp/helpers/color-from-string';
 
 export default DS.Model.extend({
   str_id: DS.attr(),
   params: DS.attr(),
-  color: function(){
-    return gen(0.9).rgbString();
-  }.property('str_id'),
   events: DS.hasMany('event'),
   is_selected: DS.attr(),
+  color: function(){
+    return colorFromString(this.get('str_id'));
+  }.property('str_id'),
+
 });

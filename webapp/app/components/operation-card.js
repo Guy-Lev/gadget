@@ -4,18 +4,19 @@ import Card from './card';
 export default Card.extend({
   entityService: Ember.inject.service(),
   operation_entities: null,
-
-   _save_entity:function(entity){
-     let entities = this.get('operation_entities');
-     if (entities === null){
-       entities = [];
-       this.set('operation_entities', entities);
-     }
-     entities.push(entity);
+  _save_entity:function(entity){
+    let entities = this.get('operation_entities');
+    if (entities === null){
+      entities = [];
+      this.set('operation_entities', entities);
+    }
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      entities.push(entity);
+    });
   },
 
-  compute_operation_entities:function(){
-    if (this.get('event.params.on') === null){
+  willRender() {
+    if (this.get('event.params.on') === undefined || this.get('operation_entities') !== null){
       return;
     }
 
@@ -23,7 +24,7 @@ export default Card.extend({
       let entity_str = this.get('event.params.on').toArray()[i];
       this.get('entityService').get_entity(entity_str, this.get('investigation')).then(this._save_entity.bind(this));
     }
-  }.on('init'),
+  },
 
   selected_entities: function(){
     if (this.get('operation_entities') === null){

@@ -16,5 +16,5 @@ Werkzeug>=0.10.2
 watchdog
 pudb
 flux
-gadget-python
+gadget-python>=0.1.5
 jsonschema
