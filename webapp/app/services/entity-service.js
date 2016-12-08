@@ -14,7 +14,7 @@ export default Ember.Service.extend({
     let returned = this._cache.get(CacheKey);
     if (returned  === undefined) {
       self = this;
-      return this.get('store').findAll('entity', {investigation: investigation}).then(function(entities){
+      return this.get('store').query('entity', {investigation_id: investigation.get('id')}).then(function(entities){
 	for (var i = 0; i < entities.get('length'); i++) {
 	  let entity = entities.toArray()[i];
 	  self._cache.set(entity.get('str_id') + '@'+ investigation.get('id').toString(), entity);

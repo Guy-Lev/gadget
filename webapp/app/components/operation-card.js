@@ -5,11 +5,10 @@ export default Card.extend({
   entityService: Ember.inject.service(),
   operation_entities: null,
   _save_entity:function(entity){
-    let entities = this.get('operation_entities');
-    if (entities === null){
-      entities = [];
-      this.set('operation_entities', entities);
+    if(this.get('operation_entities') === null){
+      this.set('operation_entities', []);
     }
+    let entities = this.get('operation_entities');
     Ember.run.scheduleOnce('afterRender', this, function() {
       entities.push(entity);
     });

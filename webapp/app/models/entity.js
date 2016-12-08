@@ -1,5 +1,4 @@
 import DS from 'ember-data';
-import color from "npm:color";
 import { colorFromString } from 'webapp/helpers/color-from-string';
 
 export default DS.Model.extend({

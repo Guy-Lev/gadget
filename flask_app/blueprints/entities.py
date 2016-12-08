@@ -1,12 +1,17 @@
 import http
 from flask import Blueprint, jsonify, request
 from .utils import validate_schema
-from ..models import Entity, db
+from ..models import Entity, Event, db
 entities = Blueprint("entities", __name__, template_folder="templates")
 
 @entities.route('', methods=['GET'])
 def get_all():
-    entity_models = db.session.query(Entity)
+    investigation_id = request.args.get('investigation_id', None)
+    if investigation_id:
+        entity_models = db.session.query(Entity).join(Entity.events)\
+                                                .filter(Event.investigation_id == investigation_id)
+    else:
+        entity_models = db.session.query(Entity)
     entities =  [entity.to_dict() for entity in entity_models]
     return jsonify({'data':entities})
 

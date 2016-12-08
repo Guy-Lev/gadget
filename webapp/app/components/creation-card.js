@@ -12,9 +12,6 @@ export default Card.extend({
     let entity_str = this.get('event.params.entity');
     let self = this;
     self.get('entityService').get_entity(entity_str, self.get('investigation')).then(function(entity){
-      if(entity === undefined){
-	return;
-      }
       Ember.run.scheduleOnce('afterRender', this, function() {
 	self.set('created_entity', entity);
       });
