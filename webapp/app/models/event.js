@@ -1,5 +1,4 @@
 import DS from 'ember-data';
-import Ember from 'ember';
 /* global moment */
 
 export default DS.Model.extend({
@@ -13,12 +12,6 @@ export default DS.Model.extend({
   }.property('update'),
 
   event_type: DS.belongsTo('event_type'),
-  is_update: Ember.computed.equal('event_type.name', 'update'),
-  is_error: Ember.computed.equal('event_type.name', 'error'),
-  is_operation: Ember.computed.equal('event_type.name', 'operation'),
-  is_creation: Ember.computed.equal('event_type.name', 'creation'),
-
-
   time_stamp: DS.attr(),
   params: DS.attr(),
   investigation: DS.belongsTo('investigation'),

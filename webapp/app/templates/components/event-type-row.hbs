@@ -1,0 +1,56 @@
+<div class="entity-row" {{action "toggle_selected"}}>
+  {{#if event_type.is_selected}}
+    {{#if event_type.is_update}}
+      <span class="fa fa-check-circle" style="color:darkblue">
+	<i style="color:darkblue;" class="fa fa-wrench" aria-hidden="true"></i>
+      </span>
+    {{else}}
+      {{#if event_type.is_error}}
+	<span class="fa fa-check-circle" style="color:darkred">
+	  <i style="color:darkred;" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+	</span>
+      {{else}}
+	{{#if event_type.is_creation}}
+	  <span class="fa fa-check-circle" style="color:Teal">
+	    <i style="color:Teal;" class="fa fa-star" aria-hidden="true"></i>
+	  </span>
+	{{else}}
+	  {{#if event_type.is_operation}}
+	    <span class="fa fa-check-circle" style="color:darkgreen">
+	      <i style="color:darkgreen;" class="fa fa-tasks" aria-hidden="true"></i>
+	    </span>
+	  {{else}}
+	    <span class="fa fa-check-circle" style="color:black"></span>
+	  {{/if}}
+	{{/if}}
+      {{/if}}
+    {{/if}}
+  {{else}}
+    {{#if event_type.is_update}}
+      <span class="fa fa-circle-o" style="color:darkblue">
+	<i style="color:darkblue;" class="fa fa-wrench" aria-hidden="true"></i>
+      </span>
+    {{else}}
+      {{#if event_type.is_error}}
+	<span class="fa fa-circle-o" style="color:darkred">
+	  <i style="color:darkred;" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+	</span>
+      {{else}}
+	{{#if event_type.is_creation}}
+	  <span class="fa fa-circle-o" style="color:Teal">
+	    <i style="color:Teal;" class="fa fa-star" aria-hidden="true"></i>
+	  </span>
+	{{else}}
+	  {{#if event_type.is_operation}}
+	    <span class="fa fa-circle-o" style="color:darkgreen">
+	      <i style="color:darkgreen;" class="fa fa-tasks" aria-hidden="true"></i>
+	    </span>
+	  {{else}}
+	    <span class="fa fa-circle-o" style="color:black"></span>
+	  {{/if}}
+	{{/if}}
+      {{/if}}
+    {{/if}}
+  {{/if}}
+  {{event_type.name}}
+</div>

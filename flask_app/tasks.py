@@ -163,7 +163,7 @@ def _handle_creation_event(log_line, investigation):
         if not investigation.warning:
             investigation.warning = warn_msg
         elif warn_msg not in investigation.warning:
-            investigation.warning = investigation.warning.join(warn_msg)
+            investigation.warning += warn_msg
     else:
         entity = Entity()
         entity.str_id = log_line.entity

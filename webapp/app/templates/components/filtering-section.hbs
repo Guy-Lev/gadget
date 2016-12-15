@@ -14,13 +14,7 @@
 </div>
 <div class="right_col">
   <h4>Event Types:</h4>
-  <br>
-  {{#multiselect-checkboxes onchange=(action 'on_check_event_type') options=sorted_event_types  selection=investigation.selected_event_types updateSelectionValue=false as |event_type isSelected|}}
-    <li>
-      <label>
-	{{input type="checkbox" checked=isSelected}}
-	{{event_type.name}}
-      </label>
-    </li>
-  {{/multiselect-checkboxes}}
+  {{#each sorted_event_types as |event_type|}}
+    {{event-type-row event_type=event_type investigation=investigation search=search}}
+  {{/each}}
 </div>
