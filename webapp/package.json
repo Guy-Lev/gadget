@@ -46,6 +46,7 @@
     "ember-multiselect-checkboxes": "0.10.0",
     "ember-resolver": "^2.0.3",
     "ember-simple-auth": "^1.1.0",
+    "ember-truth-helpers": "1.2.0",
     "ember-welcome-page": "^1.0.1",
     "liquid-fire": "^0.24.0",
     "loader.js": "^4.0.0",

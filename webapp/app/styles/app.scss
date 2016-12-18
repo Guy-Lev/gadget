@@ -172,7 +172,7 @@ body {
 .event-item:before {
     background: #fff;
     border-radius: 2px;
-    bottom: -30px;
+    bottom: -27px;
     box-shadow: 0 0 3px rgba(0,0,0,0.2);
     content: "";
     height: 100%;
@@ -180,6 +180,7 @@ body {
     position: absolute;
     width: 3px;
 }
+
 .event-item:after {
     background: #fff;
     border: 2px solid #ccc;
@@ -194,7 +195,7 @@ body {
 }
 
 .event-item .event-head {
-    padding: 6px;
+    padding: 3px;
 }
 .event-item .event-head .event-detail {
     overflow: hidden;

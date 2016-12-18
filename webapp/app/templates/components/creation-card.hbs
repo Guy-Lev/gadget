@@ -1,6 +1,11 @@
 <div class="event-item">
   <div class="event-inner">
     <div class="event-head" {{action 'toggle_expanded'}}>
+      <i style="float:right;  padding-left:5px">
+	{{#if (and created_entity.is_selected (not expanded))}}
+	  <span class="fa fa-circle" style="color:{{created_entity.color}};"></span>
+	{{/if}}
+      </i>
       <div class="event-detail">
 	<h5 style="display: inline;">
 	  <i class="fa {{if expanded 'fa-minus' 'fa-plus'}}" aria-hidden="true"></i>

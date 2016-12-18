@@ -8,9 +8,13 @@ export default Card.extend({
     if(this.get('operation_entities') === null){
       this.set('operation_entities', []);
     }
+    if(this.get('selected_entity_colors') === null){
+      this.set('selected_entity_colors', []);
+    }
+
     let entities = this.get('operation_entities');
     Ember.run.scheduleOnce('afterRender', this, function() {
-      entities.push(entity);
+      entities.pushObject(entity);
     });
   },
 
@@ -24,20 +28,6 @@ export default Card.extend({
       this.get('entityService').get_entity(entity_str, this.get('investigation')).then(this._save_entity.bind(this));
     }
   },
-
-  selected_entities: function(){
-    if (this.get('operation_entities') === null){
-      return;
-    }
-    let selected_entities = [];
-    for (let i = 0; i < this.get('operation_entities').get('length'); i++) {
-      let e = this.get('operation_entities').objectAt(i);
-      if (e.get('is_selected')){
-	selected_entities.push(e);
-      }
-    }
-    return selected_entities;
-  }.property('operation_entities' ,'operation_entities.@each.is_selected'),
 
   actions: {
     on_check_entity: function(newSelection, value, operation){
