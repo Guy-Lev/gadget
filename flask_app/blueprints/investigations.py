@@ -31,15 +31,16 @@ def get():
 
 @investigations.route('/<int:investigation_id>', methods=['GET'])
 def get_by_id(investigation_id):
-    search_str = request.args.get('search', None)
+    search_str = request.args.get('search', "")
     investigation = db.session.query(Investigation).filter_by(id=investigation_id).first()
     if not investigation:
         return "No such investigation", http.client.NOT_FOUND
-    if search_str:
-        filtered_entities = db.session.query(Entity).join(Entity.events).filter(and_(or_(Entity.is_selected == True,Entity.str_id.contains(search_str)),Event.investigation_id==int(investigation_id))).order_by(Entity.str_id).limit(50).all()
+        if search_str != "":
+            filtered_entities = db.session.query(Entity).join(Entity.events).filter(and_(or_(Entity.is_selected == True,Entity.str_id.contains(search_str)),Event.investigation_id==int(investigation_id))).all()
+
         entities = filtered_entities
     else:
-        entities =  db.session.query(Entity).join(Entity.events).filter(Event.investigation_id == investigation_id).limit(50).all()
+        entities =  db.session.query(Entity).join(Entity.events).filter(Event.investigation_id == investigation_id).all()
 
     events = get_filtered_events(investigation.id)
     ret = {'data':investigation.to_dict()}
@@ -54,11 +55,11 @@ def get_by_id(investigation_id):
     'type': 'object',
     "properties": {
         "data":{
-        'type': 'object',
+            'type': 'object',
             "properties": {
                 "attributes": {
-                "log_url": {'type': 'string'},
-                "name": {'type': 'string'},
+                    "log_url": {'type': 'string'},
+                    "name": {'type': 'string'},
                 }
             }
         },
@@ -81,6 +82,7 @@ def create():
     db.session.commit()
     log_url = investigation_json.get('log-url')
     process_log.delay(log_url, investigation.id)
+    #process_log(log_url, investigation.id)
     return jsonify({'data':investigation.to_dict()})
 
 

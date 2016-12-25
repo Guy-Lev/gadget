@@ -4,14 +4,6 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
      actions: {
-	loading: function(transition) {
-	    let controller = this.controllerFor('application');
-	    controller.send('showSpinner');
-	    transition.promise.finally(function() {
-	      controller.send('hideSpinner');
-	    });
-	},
-
 	logout: function(){
 	    this.get('session').invalidate();
 	},
