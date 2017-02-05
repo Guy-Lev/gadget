@@ -1,0 +1,36 @@
+<div class="event-item">
+  <div class="event-inner">
+    <div class="event-head" {{action 'toggle_expanded'}}>
+      <i style="float:right;  padding-left:5px">
+	{{#if (and deleted_entity.is_selected (not expanded))}}
+	  <span class="fa fa-circle" style="color:{{deleted_entity.color}};"></span>
+	{{/if}}
+      </i>
+      <div class="event-detail">
+	<h5 style="display: inline;">
+	  <i class="fa {{if expanded 'fa-minus' 'fa-plus'}}" aria-hidden="true"></i>
+	  <i style="color:darkorange;" class="fa fa-trash" aria-hidden="true"></i>
+	  Deletion
+	</h5>
+	{{#unless expanded}}
+	  <i style="font-size:small; text-overflow:ellipsis;">{{event.params.entity}}</i>
+	  <i style="font-size:small;">{{event.formated_time_stamp}}</i>
+	{{/unless}}
+      </div>
+    </div>
+    {{#liquid-if expanded class="slide"}}
+      <table class="table" style="table-layout:fixed;  width:100%;">
+	<tbody>
+	  <tr>
+	    <td style="width:20%"><strong>Entity:</strong></td>
+	    <td>{{entity-row entity=deleted_entity investigation=investigation search=search}}</td>
+	  </tr>
+	  <tr>
+	    <td><strong>Time Stamp</strong></td>
+	    <td><pre class="vw-50">{{event.formated_time_stamp}}</pre></td>
+	  </tr>
+	</tbody>
+      </table>
+    {{/liquid-if}}
+  </div>
+</div>

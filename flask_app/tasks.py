@@ -23,6 +23,7 @@ logger = logbook.Logger(__name__)
 
 TYPE_CODES = munch.Munch(
     CREATE='CR',
+    DELETE='DL',
     OPERATION='OP',
     STATE='ST',
     UPDATE='UP',
@@ -85,6 +86,8 @@ def process_log(log_url, investigation_id):
                 _handle_error_event(log_line, investigation)
             elif log_line.type == TYPE_CODES.CREATE:
                 _handle_creation_event(log_line, investigation)
+            elif log_line.type == TYPE_CODES.DELETE:
+                _handle_deletion_event(log_line, investigation)
     except Exception as e:
         investigation.error = str(e)
 
@@ -171,6 +174,19 @@ def _handle_creation_event(log_line, investigation):
 
     event = _create_basic_event(log_line, investigation)
     event.event_type = _get_or_create_event_type("creation", investigation)
+    event.entities = [entity]
+    event.investigation_id = investigation.id
+    db.session.add(event)
+
+def _handle_deletion_event(log_line, investigation):
+    entity = db.session.query(Entity).join(Entity.events).filter(and_(Entity.str_id==log_line.entity, Event.investigation_id==investigation.id)).first()
+    if not entity:
+        entity = Entity()
+        entity.str_id = log_line.entity
+        db.session.add(entity)
+
+    event = _create_basic_event(log_line, investigation)
+    event.event_type = _get_or_create_event_type("deletion", investigation)
     event.entities = [entity]
     event.investigation_id = investigation.id
     db.session.add(event)

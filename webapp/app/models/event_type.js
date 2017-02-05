@@ -10,5 +10,6 @@ export default DS.Model.extend({
   is_error: Ember.computed.equal('name', 'error'),
   is_operation: Ember.computed.equal('name', 'operation'),
   is_creation: Ember.computed.equal('name', 'creation'),
+  is_deletion: Ember.computed.equal('name', 'deletion'),
 
 });

@@ -20,7 +20,13 @@
 	      <i style="color:darkgreen;" class="fa fa-tasks" aria-hidden="true"></i>
 	    </span>
 	  {{else}}
-	    <span class="fa fa-check-circle" style="color:black"></span>
+	    {{#if event_type.is_deletion}}
+	      <span class="fa fa-check-circle" style="color:darkorange">
+		<i style="color:darkorange;" class="fa fa-trash" aria-hidden="true"></i>
+	      </span>
+	    {{else}}
+	      <span class="fa fa-check-circle" style="color:black"></span>
+	    {{/if}}
 	  {{/if}}
 	{{/if}}
       {{/if}}
@@ -46,7 +52,13 @@
 	      <i style="color:darkgreen;" class="fa fa-tasks" aria-hidden="true"></i>
 	    </span>
 	  {{else}}
-	    <span class="fa fa-circle-o" style="color:black"></span>
+	    {{#if event_type.is_deletion}}
+	      <span class="fa fa-circle-o" style="color:darkorange">
+		<i style="color:darkorange;" class="fa fa-trash" aria-hidden="true"></i>
+	      </span>
+	    {{else}}
+	      <span class="fa fa-circle-o" style="color:black"></span>
+	    {{/if}}
 	  {{/if}}
 	{{/if}}
       {{/if}}

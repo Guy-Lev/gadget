@@ -12,8 +12,12 @@
       {{else}}
 	{{#if event.event_type.is_operation}}
 	  {{operation-card event=event investigation=investigation search=search}}
-	{{else}}
-	  {{creation-card event=event investigation=investigation search=search}}
+	 {{else}}
+	  {{#if event.event_type.is_deletion}}
+	    {{deletion-card event=event investigation=investigation search=search}}
+	  {{else}}
+	    {{creation-card event=event investigation=investigation search=search}}
+	  {{/if}}
 	{{/if}}
       {{/if}}
     {{/if}}

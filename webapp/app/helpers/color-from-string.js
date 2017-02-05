@@ -15,7 +15,7 @@ export function colorFromString(s) {
   hash = Math.abs(hash)%100 / 100;
   hash += 0.618033988749895; //golden ratio
   hash %= 1;
-  let rgb =  color({h: hash * 300, s: 90, v: 85}).rgbNumber();
+  let rgb =  color({h: hash * 360, s: 90, v: 90}).rgbNumber();
   return "#" + rgb.toString(16);
 }
 
