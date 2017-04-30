@@ -35,8 +35,8 @@ def get_by_id(investigation_id):
     investigation = db.session.query(Investigation).filter_by(id=investigation_id).first()
     if not investigation:
         return "No such investigation", http.client.NOT_FOUND
-        if search_str != "":
-            filtered_entities = db.session.query(Entity).join(Entity.events).filter(and_(or_(Entity.is_selected == True,Entity.str_id.contains(search_str)),Event.investigation_id==int(investigation_id))).all()
+    if search_str != "":
+        filtered_entities = db.session.query(Entity).join(Entity.events).filter(and_(or_(Entity.is_selected == True,Entity.str_id.contains(search_str)),Event.investigation_id==int(investigation_id))).all()
 
         entities = filtered_entities
     else:
