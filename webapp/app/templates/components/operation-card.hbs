@@ -35,6 +35,12 @@
 	    <td><strong>Name</strong></td>
 	    <td><pre class="vw-50">{{event.name}}</pre></td>
 	  </tr>
+	  {{#if event.has_additional_params}}
+	    <tr>
+	      <td><strong>Additional Info</strong></td>
+	      <td><pre class="vw-50">{{event.additional_params}}</pre></td>
+	    </tr>
+	  {{/if}}
 	  <tr>
 	    <td><strong>Time Stamp</strong></td>
 	    <td><pre class="vw-50">{{event.formated_time_stamp}}</pre></td>

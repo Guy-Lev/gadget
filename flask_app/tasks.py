@@ -124,6 +124,7 @@ def _handle_operation_event(log_line, investigation):
     event.event_type =  _get_or_create_event_type("operation", investigation)
     event.name = log_line.name
     event.entities = entities
+    event.additional_params = log_line.params
     db.session.add(event)
 
 def _handle_state_event(log_line, investigation):
